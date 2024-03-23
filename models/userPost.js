@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize')
 //grabbing information from the config folder with connection.js
 const sequelize = require('../config/connection')
 
-class Post extends model { }
+class Post extends Model { }
 
 Post.init(
     {
@@ -28,15 +28,15 @@ Post.init(
         user_id: {
             // The foreign key of the User table. The user id is associated with the ID from the User model
             type: DataTypes.INTEGER,
-            reference: {
-                model: User,
-                key: id
+            references: {
+                model: 'User',
+                key: 'id'
             },
         },
     },
     {
         sequelize,
-        timestamp: true,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'Post'

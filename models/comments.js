@@ -21,7 +21,7 @@ Comment.init(
         user_id: {
             //the user_id will grab/be the id from the Users model. It is a number.
             type: DataTypes.INTEGER,
-            reference: {
+            references: {
                 model: 'User',
                 key: 'id'
             },
