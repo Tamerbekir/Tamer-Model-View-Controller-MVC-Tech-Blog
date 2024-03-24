@@ -9,6 +9,8 @@ const exphbs = require('express-handlebars');
 //package for using express sessions
 const sessions = require('express-session')
 
+
+
 //grabbing the routes from the homeRoute folder
 const routes = require('./controllers/homeRoutes')
 
@@ -24,6 +26,13 @@ const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, 'views/layouts')
+}));
+
 
 //middlewares for express to use on every request
 app.use(express.json())
