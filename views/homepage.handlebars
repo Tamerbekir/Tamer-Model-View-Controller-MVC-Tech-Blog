@@ -9,10 +9,12 @@ their name and the date it was posted on. --}}
             <div class="post">
                 <h2>{{title}}</h2>
                 <p>{{content}}</p>
+                <p>Posted by: {{user.username}}</p>
+                <p>Posted on: {{format_date date_created}}</p>
             </div>
         {{/each}}
     </div>
     {{!-- IF there are no posts, this message shows up instead: --}}
 {{else}}
-    <p>No posts to display.</p>
+    <p>No posts to display .</p>
 {{/if}}

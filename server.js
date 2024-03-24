@@ -8,6 +8,9 @@ const express = require('express')
 const exphbs = require('express-handlebars');
 //package for using express sessions
 const sessions = require('express-session')
+//brought in helpers
+const dateHelpers = require('./utils/helpers');
+
 
 
 
@@ -23,6 +26,11 @@ const sequelize = require('./config/connection')
 const app = express()
 //port
 const PORT = process.env.PORT || 3001;
+
+//custom helper for time and date for handlebar
+const hbs = exphbs.create({
+    helpers: dateHelpers,
+});
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
