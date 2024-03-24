@@ -1,3 +1,5 @@
+//for api
+const path = require('path');
 //brining in package for .dotevn file/session
 require('dotenv').config();
 //package for using express
@@ -8,7 +10,7 @@ const exphbs = require('express-handlebars');
 const sessions = require('express-session')
 
 //grabbing the routes from the homeRoute folder
-const routes = require('./controllers/homeRoute')
+const routes = require('./controllers/homeRoutes')
 
 //package for sequelize
 const SequelizeStore = require('connect-session-sequelize')(sessions.Store)

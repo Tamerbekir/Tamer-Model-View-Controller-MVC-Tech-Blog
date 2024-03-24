@@ -1,0 +1,18 @@
+{{!-- this content will render the {{body}} in the main.handlebars --}}
+
+
+{{!-- IF the user makes a POST, EACH POST will have the title of the post, the content the user wrote and will show
+their name and the date it was posted on. --}}
+{{#if posts}}
+    <div class="posts">
+        {{#each posts}}
+            <div class="post">
+                <h2>{{title}}</h2>
+                <p>{{content}}</p>
+            </div>
+        {{/each}}
+    </div>
+    {{!-- IF there are no posts, this message shows up instead: --}}
+{{else}}
+    <p>No posts to display.</p>
+{{/if}}
