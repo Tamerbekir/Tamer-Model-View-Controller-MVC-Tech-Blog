@@ -14,8 +14,9 @@ const dateHelpers = require('./utils/helpers');
 
 
 
-//grabbing the routes from the homeRoute folder
-const routes = require('./controllers/homeRoutes')
+//grabbing the routes from the index.js in the controllers  folder
+//which has all the route files inside of it
+const routes = require('./controllers')
 
 //package for sequelize
 const SequelizeStore = require('connect-session-sequelize')(sessions.Store)
@@ -66,6 +67,7 @@ const sess = {
 ///added session middleware to make sure user is logged in before
 app.use(sessions(sess));
 app.use(routes)
+
 
 // turn on connections and start server with provided port
 sequelize.sync({ force: false }).then(() =>

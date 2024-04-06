@@ -3,7 +3,7 @@ const User = require('./user')
 //bringing in Comment model
 const Comment = require('./comments')
 //bringing in User model
-const Post = require('./userPost');
+const Post = require('./post');
 
 // The user has many posts, and the id to said user is the user_id from the Post model
 User.hasMany(Post, {
@@ -30,4 +30,4 @@ Comment.belongsTo(Post, {
     foreignKey: 'post_id'
 })
 
-module.exports = ( User, Comment, Post )
+module.exports = { User, Comment, Post };

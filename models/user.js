@@ -1,43 +1,58 @@
-const { Model, DataTypes } = require('sequelize')
-//brining in data from the config folder, connection.js file
-const sequelize = require('../config/connection')
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+const sequelize = require('../config/connection');
 
-class User extends Model { }
+class User extends Model {
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
-//this is for the user and their information 
 User.init(
     {
         id: {
-            //users' id will be a number and a primary key that is auto generated
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
-            //username has to be text with no empty value and must be unique
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
+            validate: {
+                isEmail: true,
+            },
         },
         password: {
-            //user password must be text, cannot be left empty and will be validated using certain criteria.
             type: DataTypes.STRING,
             allowNull: false,
             // validate: {
-            //     //password needs to have at least 8 characters
-            //     min: 8
-            // }
+            //     len: [8],
+            // },
         },
     },
     {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'User',
+        hooks: {
+            beforeCreate: async (newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                return newUserData;
+            },
+            beforeUpdate: async (updatedUserData) => {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
+            },
+        },
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'user',
     }
-)
+);
 
-//exporting model User data
-module.exports = User
+module.exports = User;
