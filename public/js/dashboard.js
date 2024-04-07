@@ -3,9 +3,8 @@ const newFormHandler = async (event) => {
 
     const title = document.querySelector('#title').value.trim();
     const content = document.querySelector('#content').value.trim();
-    // const description = document.querySelector('#project-desc').value.trim();
 
-    if (title && content ) {
+    if (title && content) {
         const response = await fetch(`/dashboard/create`, {
             method: 'POST',
             body: JSON.stringify({ title, content }),
@@ -21,28 +20,27 @@ const newFormHandler = async (event) => {
         }
     }
 };
-
-// const delButtonHandler = async (event) => {
-//     if (event.target.hasAttribute('data-id')) {
-//         const id = event.target.getAttribute('data-id');
-
-//         const response = await fetch(`/api/projects/${id}`, {
-//             method: 'DELETE',
-//         });
-
-//         if (response.ok) {
-//             document.location.replace('/profile');
-//         } else {
-//             alert('Failed to delete project');
-//         }
-//     }
-// };
-
-document
-    .querySelector('#new-post-form')
-    .addEventListener('submit', newFormHandler);
+document.querySelector('#new-post-form').addEventListener('submit', newFormHandler);
 
 
-// document
-//     .querySelector('.project-list')
-//     .addEventListener('click', delButtonHandler);
+const delButtonHandler = async (event) => {
+    event.preventDefault();
+    if (event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
+        
+        const response = await fetch(`/dashboard/delete/${id}`, {
+            method: 'DELETE',
+        });
+
+        // console.log(response);
+
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert('Failed to delete post');
+        }
+    }
+};
+
+
+document.querySelector('.post-list').addEventListener('click', delButtonHandler);

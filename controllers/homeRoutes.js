@@ -6,13 +6,13 @@ const { Post, User, Comment } = require('../models');
 router.get('/', async (req, res) => {
     try {
         if (req.session.logged_in) {
-            const postData = await Post.findAll({
+            const blogPostData = await Post.findAll({
                 include: [{ model: User, attributes: ['name'] }]
             });
-            const posts = postData.map((post) => post.get({ plain: true }));
+            const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
 
             res.render('homepage', { 
-                posts, 
+                blogPosts, 
                 logged_in: req.session.logged_in,
                 user: req.session.user 
             });

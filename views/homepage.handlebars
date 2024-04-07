@@ -7,11 +7,11 @@
 {{/if}}
 
 <div class="blog-posts">
-    {{#each posts as |post|}}
+    {{#each blogPosts as |blogPost|}}
         <div class="blog-post">
-            <h2>{{post.title}}</h2>
-            <p>{{post.content}}</p>
-            <p>Posted by {{user.name}} on {{format_date post.createdAt}}</p>
+            <h2>{{blogPost.title}}</h2>
+            <p>{{blogPost.content}}</p>
+            <p>Posted by {{user.name}} on {{format_date blogPost.createdAt}}</p>
         </div>
     {{/each}}
 </div>
