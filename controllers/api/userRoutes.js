@@ -64,6 +64,7 @@ router.post('/signup', async (req, res) => {
         const userData = await User.create(req.body);
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.user = userData.get({ plain: true }) //added this so user name is pulled from User model and rendered on handelbars for homepage
             req.session.logged_in = true;
             res.redirect('/dashboard');
         });

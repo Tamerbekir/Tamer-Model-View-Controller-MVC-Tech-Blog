@@ -22,7 +22,6 @@ router.post('/create', async (req, res) => {
             ...req.body,
             user_id: req.session.user_id
         });
-        res.status(201).json(newPost)
         res.redirect('/dashboard');
     } catch (err) {
         res.status(500).json(err);

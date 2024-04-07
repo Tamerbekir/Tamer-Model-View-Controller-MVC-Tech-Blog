@@ -28,19 +28,16 @@ const app = express()
 //port
 const PORT = process.env.PORT || 3001;
 
-//custom helper for time and date for handlebar
-const hbs = exphbs.create({
+
+// custom helper for time and date
+const hbs = exphbs.create({ 
     helpers: dateHelpers,
+    layoutsDir: path.join(__dirname, 'views/layouts')
 });
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
-
-
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views/layouts')
-}));
+// setting up Handlebars engine with custom helpers
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 
 //middlewares for express to use on every request
