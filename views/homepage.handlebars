@@ -1,7 +1,7 @@
-<h1>Welcome to the Tech Blog!</h1>
+<h1 class="text-center m4">Welcome to the Tech Blog!</h1>
 
-{{#if loggedIn}}
-    <p>Hello, {{username}}! Check out the latest blog posts below.</p>
+{{#if logged_in}}
+    <p class="text-center m4">Hello, {{user.name}}! Check out the latest blog posts below.</p>
 {{else}}
     <p>Please <a href="/login">log in</a> or <a href="/login">sign up</a> to view and create blog posts.</p>
 {{/if}}

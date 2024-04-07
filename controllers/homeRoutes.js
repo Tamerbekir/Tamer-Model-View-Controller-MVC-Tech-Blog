@@ -5,19 +5,29 @@ const { Post, User, Comment } = require('../models');
 // Homepage route
 router.get('/', async (req, res) => {
     try {
-        const postData = await Post.findAll({
-            include: [{ model: User, attributes: ['name'] }]
-        });
-        const posts = postData.map((post) => post.get({ plain: true }));
-        res.render('homepage', { posts, logged_in: req.session.logged_in });
+        if (req.session.logged_in) {
+            const postData = await Post.findAll({
+                include: [{ model: User, attributes: ['name'] }]
+            });
+            const posts = postData.map((post) => post.get({ plain: true }));
+
+            res.render('homepage', { 
+                posts, 
+                logged_in: req.session.logged_in,
+                user: req.session.user 
+            });
+        } else {
+            res.redirect('/login');
+        }
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
+
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-        res.redirect('/dashboard');
+        res.redirect('/');
     } else {
         res.render('login');
     }

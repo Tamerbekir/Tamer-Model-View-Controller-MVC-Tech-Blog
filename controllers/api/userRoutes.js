@@ -1,6 +1,12 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+//using for test purposes to ensure users are being saved to the database
+// User.findAll().then(users => {
+//     console.log(users);
+// })
+
+
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body);
@@ -19,6 +25,7 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
+        // console.log('User Data:', userData);
 
         if (!userData) {
             res
@@ -28,6 +35,8 @@ router.post('/login', async (req, res) => {
         }
 
         const validPassword = await userData.checkPassword(req.body.password);
+        // console.log('Password Valid:', validPassword);
+
 
         if (!validPassword) {
             res
@@ -38,8 +47,8 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.user = userData.get({ plain: true }) //added this so user name is pulled from User model and rendered on handelbars for homepage
             req.session.logged_in = true;
-
             res.json({ user: userData, message: 'You are now logged in!' });
         });
 
@@ -48,27 +57,34 @@ router.post('/login', async (req, res) => {
     }
 })
 
+
+
 router.post('/signup', async (req, res) => {
     try {
         const userData = await User.create(req.body);
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-            res.status(200).json(userData);
+            res.redirect('/dashboard');
         });
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
+
+
+
+
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
-            res.status(204).end();
+            res.redirect('/login'); 
         });
     } else {
         res.status(404).end();
     }
 });
+
 
 module.exports = router;
