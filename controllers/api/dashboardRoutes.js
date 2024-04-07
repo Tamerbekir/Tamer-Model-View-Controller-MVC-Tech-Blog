@@ -4,14 +4,15 @@ const { Post } = require('../../models');
 
 router.get('/', async (req, res) => {
     if (req.session.logged_in) {
-        const posts = await Post.findAll({
+        const postData = await Post.findAll({
             where: {
                 user_id: req.session.user_id
             }
         });
+        const posts = postData.map((post) => post.get({ plain: true })) //added to show posts show on dashboard
         res.render('dashboard', { posts });
     } else {
-        res.redirect('/login');
+        res.redirect('/login')
     }
 });
 

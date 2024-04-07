@@ -3,38 +3,38 @@
 
     <h1 class="mb-4">Dashboard</h1>
 
-    <div class="mb-4">
-        <h2>Your Blog Posts</h2>
-        {{!-- For each post, user will able to see / create a title and write the content. It will use the helper
-        for posting the date and formatted date. it will take from the Post model. --}}
-        {{#each Post as |post|}}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h3 class="card-title">{{post.title}}</h3>
-                <p class="card-text">{{post.content}}</p>
-                <p class="card-text"><small class="text-muted">Posted on: </small></p>
-                <!-- Need add and delete links here -->
+        <div class="mb-4">
+            <h2>Your Blog Posts</h2>
+            {{!-- For each post, user will able to see / create a title and write the content. It will use the helper
+            for posting the date and formatted date. it will take from the Post model. --}}
+            {{#each posts as |post|}}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title">{{post.title}}</h3>
+                    <p class="card-text">{{post.content}}</p>
+                    <p class="card-text"><small class="text-muted">Posted on: {{format_date post.createdAt}}</small></p>
+                    <!-- Need add and delete links here -->
+                </div>
             </div>
+            {{else}}
+            {{!-- if the user has no posts, this will display: --}}
+            <p>Hmmm. No blog posts yet. Why don't you get started?</p>
+            {{/each}}
         </div>
-        {{else}}
-        {{!-- if the user has no posts, this will display: --}}
-        <p>Hmmm. No blog posts yet. Why don't you get started?</p>
-        {{/each}}
-    </div>
-    <div>
-        {{!-- This gives the user the ability to post a new blog if they havent already --}}
-        <h2>Add a New Blog Post</h2>
-        <form action="/dashboard/create" method="POST" class="mb-4" id="new-post-form">
-            <div class="mb-3">
-                <label for="title" class="form-label">Title:</label>
-                <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-            <div class="mb-3">
-                <label for="content" class="form-label">Content:</label>
-                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="new-post-form">Submit</button>
-        </form>
-
-    </div>
-</div>
+        <div>
+            {{!-- This gives the user the ability to post a new blog if they havent already --}}
+            <h2>Add a New Blog Post</h2>
+            <form action="/dashboard/create" method="POST" class="mb-4" id="new-post-form">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content:</label>
+                    <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="new-post-form">Submit</button>
+            </form>
+        
+        </div>
+        </div>
