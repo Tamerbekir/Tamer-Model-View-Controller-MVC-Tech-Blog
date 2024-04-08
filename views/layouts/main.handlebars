@@ -17,10 +17,10 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="/">Homepage</a>
-                    {{#if logged_in}}
                     <a class="nav-link" href="/dashboard">Dashboard</a>
+                    {{#if logged_in}}
                     <form action="/users/logout" method="POST" >
-                        <button type="submit" class="btn btn-link nav-link" style="padding;">Logout</button>
+                    <button type="submit" class="btn btn-link nav-link" style="padding;">Logout</button>
                     </form>
                     {{/if}}
                 </div>

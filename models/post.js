@@ -29,9 +29,17 @@ Post.init(
             // The foreign key of the User table. The user id is associated with the ID from the User model
             type: DataTypes.INTEGER,
             references: {
-                model: 'User', 
-            },        
+                model: 'user', 
+            },  
         },
+        // added post id for comment
+        post_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,
