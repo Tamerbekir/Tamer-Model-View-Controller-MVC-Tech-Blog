@@ -21,12 +21,14 @@ router.get('/', async (req, res) => {
 router.post('/create', async (req, res) => {
     try {
         const newComment = await Comment.create({
+            ...req.body,
             content: req.body.content,
             post_id: req.body.postId,
             user_id: req.session.user_id
         });
-        // to see if comment is created
-        res.status(201).json(newComment)
+        // to see if comment is registered
+        console.log(req.body)
+        res.redirect('/')
     } catch (err) {
         res.status(500).json(err);
     }
