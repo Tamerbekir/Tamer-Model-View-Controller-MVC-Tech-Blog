@@ -9,20 +9,9 @@
     <p>Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
     <a href="/blogpost/{{blogPost.id}}">View Post</a>
     
-{{#each Comments as |comment|}}
 <div class="comment m-3">
-    <p class="m-2"><strong>{{comment.user.name}}</strong>: {{comment.content}} on {{format_date comment.createdAt}}</p>
-    {{!-- using helper that checks if comments belongs to use, and if so display delete button  --}}
-    {{#if (eq comment.user.name ../user.name)}}
-        {{!-- <button class="btn btn-sm btn-danger delete-comment-button" data-id="{{comment.id}}">Delete</button> --}}
-    {{/if}}
 </div>
-{{/each}}
-    <form action="/comments/create" method="POST" class="mb-4 new-comment-form">
-        <input type="hidden" name="blogPost_id" value="{{blogPost.id}}">
-        <input type="text" name="content" class="form-control" id="userComment" placeholder="Leave a comment">
-        <button type="submit" class="btn btn-primary m-1">Comment</button>
-    </form>
+
 </div>
 {{/each}}
 {{else}}

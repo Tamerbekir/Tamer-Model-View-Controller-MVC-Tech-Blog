@@ -24,7 +24,7 @@ event.preventDefault();
             document.location.replace('/dashboard');
 
         } else {
-            alert(response.statusText);
+            alert('Incorrect user name or password. Please try again.');
         }
     }
 };
