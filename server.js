@@ -10,6 +10,10 @@ const exphbs = require('express-handlebars');
 const sessions = require('express-session')
 //brought in helpers
 const dateHelpers = require('./utils/helpers');
+//bringing in handlebars 
+const handlebars = require('handlebars');
+
+
 
 
 
@@ -34,6 +38,12 @@ const hbs = exphbs.create({
     helpers: dateHelpers,
     layoutsDir: path.join(__dirname, 'views/layouts')
 });
+
+//helper for handlebars that will work with the delete button showing IF the user leaves a comment it will check if user === active comment, thus showing delete button. 
+handlebars.registerHelper('eq', function (val1, val2) {
+    return val1 === val2;
+});
+
 
 // setting up Handlebars engine with custom helpers
 app.engine('handlebars', hbs.engine);

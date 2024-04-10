@@ -1,27 +1,28 @@
 <h1 class="text-center m4">Welcome to the Tech Blog!</h1>
 
 {{#if logged_in}}
-<p class="text-center m4">Hello, {{user.name}}! Check out the latest blog posts below.</p>
+<p class="text-center">Hello, {{user.name}}! Check out the latest blog posts below.</p>
 {{#each blogPosts as |blogPost|}}
-<div class="blog-post">
+<div class="blog-post card mb-5">
     <h2>{{blogPost.title}}</h2>
     <p>{{blogPost.content}}</p>
     <p>Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
-
-    {{#each Comments as |comment|}}
-    <div class="comment">
-        <p><strong>{{comment.user.name}}</strong> said: {{comment.content}} on {{format_date comment.createdAt}}</p>
-    </div>
-    {{/each}}
-
+    <a href="/blogpost/{{blogPost.id}}">View Post</a>
+    
+{{#each Comments as |comment|}}
+<div class="comment m-3">
+    <p class="m-2"><strong>{{comment.user.name}}</strong>: {{comment.content}} on {{format_date comment.createdAt}}</p>
+    {{!-- using helper that checks if comments belongs to use, and if so display delete button  --}}
+    {{#if (eq comment.user.name ../user.name)}}
+        {{!-- <button class="btn btn-sm btn-danger delete-comment-button" data-id="{{comment.id}}">Delete</button> --}}
+    {{/if}}
+</div>
+{{/each}}
     <form action="/comments/create" method="POST" class="mb-4 new-comment-form">
         <input type="hidden" name="blogPost_id" value="{{blogPost.id}}">
-        <input type="text" name="content" id="userComment" placeholder="Leave a comment">
-        <button type="submit">Comment</button>
+        <input type="text" name="content" class="form-control" id="userComment" placeholder="Leave a comment">
+        <button type="submit" class="btn btn-primary m-1">Comment</button>
     </form>
-    <button class="btn btn-sm btn-danger " data-id="{{blogPost.id}}">Delete</button>
-
-
 </div>
 {{/each}}
 {{else}}

@@ -30,15 +30,16 @@ router.delete('/delete/:id', async (req, res) => {
                 id: req.params.id,
                 user_id: req.session.user_id,
             },
-        })
-        if (deleteComment) {
-            res.status(404).json({ message: "no comment found with this id" })
-            return
+        });
+        if (!deleteComment) {
+            res.status(404).json({ message: "No comment found with this id" });
+        } else {
+            res.status(200).json({ message: "Comment deleted successfully" });
         }
-        res.status(200).json(deleteComment)
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json(err);
     }
-})
+});
+
 
 module.exports = router; 
