@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
             }
         });
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true })) //added to show posts show on dashboard
+        console.log(blogPosts)
         res.render('dashboard', { blogPosts });
     } else {
         res.redirect('/login')
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/create', async (req, res) => {
+router.post('/post/create', async (req, res) => {
     try {
         const newPost = await Post.create({
             ...req.body,
@@ -47,7 +48,7 @@ router.post('/create', async (req, res) => {
 // });
 
 // Route for deleting a post
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/post/delete/:id', async (req, res) => {
     try {
         const post = await Post.destroy({
             where: {

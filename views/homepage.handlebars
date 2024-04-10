@@ -1,25 +1,33 @@
 <h1 class="text-center m4">Welcome to the Tech Blog!</h1>
 
 {{#if logged_in}}
-    <p class="text-center m4">Hello, {{user.name}}! Check out the latest blog posts below.</p>
-    {{#each blogPosts as |blogPost|}}
-        <div class="blog-post">
-            <h2>{{blogPost.title}}</h2>
-            <p>{{blogPost.content}}</p>
-            <p>Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
-            <form action="/homepage/create" method="POST" class="mb-4 new-comment-form">
-                <input type="hidden" name="postId" value="{{blogPost.id}}">
-                <input type="text" name="content" id="userComment" placeholder="Leave a comment">
-                <button type="submit">Comment</button>
-            </form>
-        </div>
+<p class="text-center m4">Hello, {{user.name}}! Check out the latest blog posts below.</p>
+{{#each blogPosts as |blogPost|}}
+<div class="blog-post">
+    <h2>{{blogPost.title}}</h2>
+    <p>{{blogPost.content}}</p>
+    <p>Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
+
+    {{#each Comments as |comment|}}
+    <div class="comment">
+        <p><strong>{{comment.user.name}}</strong> said: {{comment.content}} on {{format_date comment.createdAt}}</p>
+    </div>
     {{/each}}
+
+    <form action="/comments/create" method="POST" class="mb-4 new-comment-form">
+        <input type="hidden" name="blogPost_id" value="{{blogPost.id}}">
+        <input type="text" name="content" id="userComment" placeholder="Leave a comment">
+        <button type="submit">Comment</button>
+    </form>
+    <button class="btn btn-sm btn-danger " data-id="{{blogPost.id}}">Delete</button>
+
+
+</div>
+{{/each}}
 {{else}}
-    <p>Please <a href="/login">log in</a> or <a href="/login">sign up</a> to view and create blog posts.</p>
+<p>Please <a href="/login">log in</a> or <a href="/login">sign up</a> to view and create blog posts.</p>
 {{/if}}
 
 {{#if logged_in}}
-<script src="/js/homepage.js"></script>
+<script src="/js/comments.js"></script>
 {{/if}}
-
-

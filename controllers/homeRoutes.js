@@ -9,25 +9,31 @@ const { Post, User, Comment } = require('../models');
 
 // Homepage route
 router.get('/', async (req, res) => {
-    console.log('Logged in:', req.session.logged_in);
+    console.log('If logged in', req.session.logged_in);
     try {
         const blogPostData = await Post.findAll({
             include: [
-                { 
-                    model: User, 
-                    attributes: ['name'] 
+                {
+                    model: User,
+                    attributes: ['name']
                 },
-                { 
-                    model: Comment, 
-                    include: [{ 
-                        model: User, 
-                        attributes: ['name'] 
-                    }]
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            attributes: ['name']
+                        }
+                    ]
                 }
             ],
             order: [['createdAt', 'DESC']]
         });
+        
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
+        
+        console.log('Blog posts with the comments attached', JSON.stringify(blogPosts, null, 2))
+
 
         res.render('homepage', {
             blogPosts,
@@ -40,8 +46,10 @@ router.get('/', async (req, res) => {
 });
 
 
+
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
+        // console.log(attributes ['content'])
         res.redirect('/');
     } else {
         res.render('login');

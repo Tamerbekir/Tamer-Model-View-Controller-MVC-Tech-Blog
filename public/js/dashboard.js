@@ -5,7 +5,7 @@ const newFormHandler = async (event) => {
     const content = document.querySelector('#content').value.trim();
 
     if (title && content) {
-        const response = await fetch(`/dashboard/create`, {
+        const response = await fetch(`/dashboard/post/create`, {
             method: 'POST',
             body: JSON.stringify({ title, content }),
             headers: {
@@ -16,7 +16,7 @@ const newFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace('/dashboard');
         } else {
-            alert('Failed to create post');
+            alert('There was an error registering you post. Please try again.');
         }
     }
 };
@@ -28,7 +28,7 @@ const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
         
-        const response = await fetch(`/dashboard/delete/${id}`, {
+        const response = await fetch(`/dashboard/post/delete/${id}`, {
             method: 'DELETE',
         });
 

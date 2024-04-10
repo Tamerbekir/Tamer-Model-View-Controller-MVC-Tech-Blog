@@ -3,37 +3,23 @@ const router = express.Router();
 const { Comment } = require('../../models');
 
 
-router.get('/', async (req, res) => {
-    if (req.session.logged_in) {
-        const commentData = await Comment.findAll({
-            where: {
-                user_id: req.session.user_id
-            }
-        });
-        const comments = commentData.map((comments) => comments.get({ plain: true })) //added to show comments show on homepage
-        res.render('homepage', { comments });
-    } else {
-        res.redirect('/login')
-    }
-});
-
 //Made route for creating comment
 router.post('/create', async (req, res) => {
+    // console.log(req.body)
     try {
         const newComment = await Comment.create({
-            ...req.body,
             content: req.body.content,
-            post_id: req.body.postId,
+            post_id: req.body.blogPost_id,
             user_id: req.session.user_id
-        });
-        // to see if comment is registered
-        console.log(req.body)
-        res.redirect('/')
+        })
+        //using to ensure comment was created and in database. All is working
+        // console.log(req.body);
+        // res.status(200).json(newComment);
+        res.redirect('/');
     } catch (err) {
         res.status(500).json(err);
     }
 });
-
 
 
 //Made route for deleting comment
