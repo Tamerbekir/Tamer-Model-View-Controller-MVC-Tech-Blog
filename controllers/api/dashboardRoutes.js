@@ -30,22 +30,27 @@ router.post('/post/create', async (req, res) => {
     }
 });
 
-//! May allow editing to blog posts when application is complete
-// Route for updating a post
-// router.put('/update/:id', async (req, res) => {
-//     try {
-//         const updatedPost = await Post.update(req.body, {
-//             where: { id: req.params.id, user_id: req.session.user_id }
-//         });
-//         if (!updatedPost) {
-//             res.status(404).json({ message: 'No post found with this id' });
-//             return;
-//         }
-//         res.status(201).json(updatedPost)
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
+
+//Route for updating the individual blot post
+router.post('/update/:id', async (req, res) => {
+    try {
+        const updateBlogPost = await Post.update(
+            {
+                title: req.body.title,
+                content: req.body.content
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        )
+        
+        res.redirect('/dashboard')
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 
 // Route for deleting a post
 router.delete('/post/delete/:id', async (req, res) => {
@@ -62,7 +67,7 @@ router.delete('/post/delete/:id', async (req, res) => {
             return;
         }
 
-        res.status(200).json(post);
+        // res.status(200).json(post);
     } catch (err) {
         res.status(500).json(err);
     }

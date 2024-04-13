@@ -5,8 +5,8 @@
 
     <div class="mb-4">
         <div class="post-list">
-        <h2>Your Blog Posts</h2>
-        {{#each blogPosts as |blogPost|}}
+            <h2>Your Blog Posts</h2>
+            {{#each blogPosts as |blogPost|}}
             <div class="card mb-3">
                 <div class="card-body">
                     <h3 class="card-title">{{blogPost.title}}</h3>
@@ -14,34 +14,36 @@
                     <p class="card-text"><small class="text-muted">Date: {{format_date blogPost.createdAt}}</small>
                     </p>
                     <div>
-                    <button class="btn btn-sm btn-danger "  data-id="{{blogPost.id}}">Delete</button>
+                        <button class="btn btn-sm btn-danger " data-id="{{blogPost.id}}">Delete</button>
+                        
+                        <a href="/blogpost/edit/{{blogPost.id}}" class="btn btn-sm btn-primary">Edit</a>
                     </div>
+
+                    
                 </div>
             </div>
-        {{!-- <form action="/dashboard/update/{{blogPost.id}}" method="POST">
-            <button type="submit" class="btn update-post-form"> Edit</button>
-        </form> --}}
-        {{else}}
-        <p>Hmmm. No blog posts yet. Why don't you get started?</p>
-        {{/each}}
+            {{else}}
+            <p>Hmmm. No blog posts yet. Why don't you get started?</p>
+            {{/each}}
         </div>
+    </div>
+    <div>
+        {{!-- This gives the user the ability to post a new blog if they haven't already --}}
+        <h2>Add a New Blog Post</h2>
+        <form action="/dashboard/post/create" method="POST" class="mb-4" id="new-post-form">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content:</label>
+                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </div>
-<div>
-    {{!-- This gives the user the ability to post a new blog if they havent already --}}
-    <h2>Add a New Blog Post</h2>
-    <form action="/dashboard/post/create" method="POST" class="mb-4" id="new-post-form">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Content:</label>
-            <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
-        </div>
-        <button type="submit"> Submit</button>
-    </form>
 
-</div>
-</div>
 
 <script src="/js/dashboard.js"></script>
+<script src="/js/editBlogPost.js"></script>

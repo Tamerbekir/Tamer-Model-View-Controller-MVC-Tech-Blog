@@ -20,10 +20,12 @@ const newFormHandler = async (event) => {
         }
     }
 };
+
+
 document.querySelector('#new-post-form').addEventListener('submit', newFormHandler);
 
 
-const delButtonHandler = async (event) => {
+const delBlogPostHandler = async (event) => {
     event.preventDefault();
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
@@ -43,4 +45,5 @@ const delButtonHandler = async (event) => {
 };
 
 
-document.querySelector('.post-list').addEventListener('click', delButtonHandler);
+document.querySelector('.post-list').addEventListener('click', delBlogPostHandler);
+

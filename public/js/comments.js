@@ -1,10 +1,8 @@
 const newCommentHandler = async (event) => {
     event.preventDefault();
 
-    // Use the name attribute to select the input field
     const blogPostId = event.target.querySelector('#blogPost_id').value;
-    const content = event.target.querySelector('#userComment').value.trim();
-
+    const content = event.target.querySelector('#userComment').value
 
 
     if (content) {
@@ -15,10 +13,9 @@ const newCommentHandler = async (event) => {
                 'Content-Type': 'application/json',
             },
         });
-        
+
         if (response.ok) {
-            //checking to make sure comments are created
-            console.log(response)
+
             document.location.reload();
         } else {
             alert('There was an problem submitting your comment. Please try again.');
@@ -29,20 +26,25 @@ const newCommentHandler = async (event) => {
 
 const delCommentHandler = async (event) => {
     if (event.target.matches('.delete-comment-button')) {
-        const id = event.target.getAttribute('data-id');
-        
-        const response = await fetch(`/comments/delete/${id}`, {
-            method: 'DELETE',
-        });
-        
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert('Failed to delete comment');
+        const confirmed = confirm("Are you sure you want to delete this comment?")
+
+        if (confirmed) {
+
+            const id = event.target.getAttribute('data-id');
+
+            const response = await fetch(`/comments/delete/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert('Failed to delete comment');
+            }
         }
+        // console.log(delCommentHandler)
     }
-    console.log(delCommentHandler)
-};
+}
 
 document.addEventListener('click', delCommentHandler);
 
