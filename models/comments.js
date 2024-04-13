@@ -22,7 +22,7 @@ Comment.init(
             //the user_id will grab/be the id from the Users model. It is a number.
             type: DataTypes.INTEGER,
             references: {
-                model: 'User',
+                model: 'user',
                 key: 'id'
             },
         },
@@ -30,7 +30,7 @@ Comment.init(
             //the post_id will grab/be the id from the Post model. It is a number.
             type: DataTypes.INTEGER,
             references: {
-                model: 'Post',
+                model: 'ost',
                 key: 'id'
             },
         },

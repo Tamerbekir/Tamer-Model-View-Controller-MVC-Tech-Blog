@@ -53,7 +53,7 @@ router.get('/post/:id', async (req, res) => {
             ]
         });
         if (!postData) {
-            res.status(404).json({ message: 'No post found with this id' });
+            res.status(404).res.render('404page')
             return;
         }
         const post = postData.get({ plain: true });
@@ -72,7 +72,7 @@ router.get('/comment/:id', async (req, res) => {
             ]
         });
         if (!commentData) {
-            res.status(404).json({ message: 'No comment found with this id' });
+            res.status(404).res.render('404page')
             return;
         }
         const comment = commentData.get({ plain: true });
