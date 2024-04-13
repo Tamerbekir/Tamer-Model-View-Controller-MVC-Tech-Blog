@@ -24,11 +24,10 @@ const newFormHandler = async (event) => {
 
 document.querySelector('#new-post-form').addEventListener('submit', newFormHandler);
 
-
 const delBlogPostHandler = async (event) => {
     event.preventDefault();
-    if (event.target.hasAttribute('data-id')) {
-        const id = event.target.getAttribute('data-id');
+    if (event.target.hasAttribute('delete-data-id')) {
+        const id = event.target.getAttribute('delete-data-id');
         
         const response = await fetch(`/dashboard/post/delete/${id}`, {
             method: 'DELETE',
@@ -47,3 +46,15 @@ const delBlogPostHandler = async (event) => {
 
 document.querySelector('.post-list').addEventListener('click', delBlogPostHandler);
 
+
+
+const editPostHandler = async (event) => {
+    event.preventDefault(); 
+    if (event.target.hasAttribute('edit-data-id')) {
+        const id = event.target.getAttribute('edit-data-id')
+        window.location.href = `/blogpost/edit/${id}`
+    }
+};
+
+
+document.querySelector('.edit-link').addEventListener('click', editPostHandler);

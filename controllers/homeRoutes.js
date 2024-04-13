@@ -70,7 +70,7 @@ router.get('/post/:id', async (req, res) => {
             return;
         }
         const post = postData.get({ plain: true });
-        res.render('single-post', { post, logged_in: req.session.logged_in });
+        res.render('/', { post, logged_in: req.session.logged_in });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -89,7 +89,7 @@ router.get('/comment/:id', async (req, res) => {
             return
         }
         const comment =  commentData.get({ plain: true })
-        res.render('single-comment', { comment, logged_in: req.session.logged_in })
+        res.render('/', { comment, logged_in: req.session.logged_in })
     } catch (err) {
         res.status(500).json(err)
     }

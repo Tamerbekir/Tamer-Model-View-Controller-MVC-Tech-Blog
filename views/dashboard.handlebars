@@ -14,12 +14,12 @@
                     <p class="card-text"><small class="text-muted">Date: {{format_date blogPost.createdAt}}</small>
                     </p>
                     <div>
-                        <button class="btn btn-sm btn-danger " data-id="{{blogPost.id}}">Delete</button>
-                        
-                        <a href="/blogpost/edit/{{blogPost.id}}" class="btn btn-sm btn-primary">Edit</a>
-                    </div>
+                        <button class="btn btn-sm btn-danger " delete-data-id="{{blogPost.id}}">Delete</button>
 
-                    
+                        <a href="/blogpost/edit/{{blogPost.id}}" class="btn btn-sm btn-primary edit-link"
+                            edit-data-id="{{blogPost.id}}">Edit</a>
+
+                    </div>
                 </div>
             </div>
             {{else}}
