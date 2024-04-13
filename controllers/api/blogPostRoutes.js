@@ -43,8 +43,14 @@ router.get('/edit/:id', async (req, res) => {
             ]
         });
 
+
         if (!postData) {
             res.status(404).send('No post found with this id');
+            return;
+        }
+
+        if (postData.user_id !== req.session.user_id) {
+            res.render('404page')
             return;
         }
         const post = postData.get({ plain: true });
