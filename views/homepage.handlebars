@@ -1,13 +1,12 @@
-<h1 class="text-center m4">Welcome to the Tech Blog!</h1>
-
 {{#if logged_in}}
+<h1 class="text-center m4">Welcome to the Tech Blog!</h1>
 <p class="text-center">Hello, {{user.name}}! Check out the latest blog posts below.</p>
 {{#each blogPosts as |blogPost|}}
 <div class="blog-post card mb-5">
-    <h2>{{blogPost.title}}</h2>
-    <p>{{blogPost.content}}</p>
-    <p>Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
-    <a href="/blogpost/{{blogPost.id}}">View Post</a>
+    <h2 class="m-2">{{blogPost.title}}</h2>
+    <p class="m-2">{{blogPost.content}}</p>
+    <p class="m-2">Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
+    <a class="m-2" href="/blogpost/{{blogPost.id}}">View Post</a>
     
 <div class="comment m-3">
 </div>
@@ -15,9 +14,25 @@
 </div>
 {{/each}}
 {{else}}
-<p>Please <a href="/login">log in</a> or <a href="/login">sign up</a> to view and create blog posts.</p>
-{{/if}}
+
+<h1 class="text-center m4">Welcome to the Tech Blog!</h1>
+
+<p class="text-center">Check out the latest blog posts below.</p>
+{{#each blogPosts as |blogPost|}}
+<div class="blog-post card mb-5">
+    <h2 class="m-2">{{blogPost.title}}</h2>
+    <p class="m-2">{{blogPost.content}}</p>
+    <p class="m-2">Posted by {{blogPost.user.name}} on {{format_date blogPost.createdAt}}</p>
+    <a class="m-2" href="/blogpost/{{blogPost.id}}">View Post</a>
+</div>
+<p class="text-center">Don't have an account yet? No problem! <a href="/login">Sign up</a> to view and create blog posts.</p>
+{{/each}}
+
 
 {{#if logged_in}}
 <script src="/js/comments.js"></script>
 {{/if}}
+{{/if}}
+
+
+

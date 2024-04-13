@@ -1,30 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const { Post } = require('../../models');
+const withAuth =  require('../../utils/auth')
 
 router.get('/', async (req, res) => {
     if (req.session.logged_in) {
+
         const blogPostData = await Post.findAll({
-            where: {
-                user_id: req.session.user_id
-            }
         });
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true })) //added to show posts show on dashboard
         console.log(blogPosts)
-        res.render('dashboard', { blogPosts });
+        res.render('dashboard', {
+            // Getting the dashboard did not have a log in session. Added it to fix handelbars issue.
+            blogPosts,
+            logged_in: req.session.logged_in,
+            user: req.session.user
+        })
     } else {
         res.redirect('/login')
     }
 });
 
 
-router.post('/post/create', async (req, res) => {
+router.post('/post/create', withAuth, async (req, res) => {
     try {
         const newPost = await Post.create({
             ...req.body,
             user_id: req.session.user_id
         });
-        res.redirect('/dashboard');
+        res.redirect('/dashboard')
     } catch (err) {
         res.status(500).json(err);
     }
@@ -32,7 +36,7 @@ router.post('/post/create', async (req, res) => {
 
 
 //Route for updating the individual blot post
-router.post('/update/:id', async (req, res) => {
+router.post('/update/:id', withAuth, async (req, res) => {
     try {
         const updateBlogPost = await Post.update(
             {
@@ -53,7 +57,7 @@ router.post('/update/:id', async (req, res) => {
 })
 
 // Route for deleting a post
-router.delete('/post/delete/:id', async (req, res) => {
+router.delete('/post/delete/:id', withAuth, async (req, res) => {
     try {
         const post = await Post.destroy({
             where: {

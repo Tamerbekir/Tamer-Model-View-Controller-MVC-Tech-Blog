@@ -8,7 +8,7 @@
     {{#if blogPost.Comments.length}}
     {{#each blogPost.Comments as |comment|}}
     <div class="comment m-3 mt-0">
-        <p class="m-2"><strong>{{comment.user.name}}</strong>: {{comment.content}} - {{format_date comment.createdAt}}
+        <p class="m-2"><strong>{{comment.user.name}}</strong>: {{comment.content}} - {{format_date comment.createdAt "YYYY-MM-DD"}}
         </p>
         {{#if (eq comment.user.name ../user.name)}}
         <button class="btn btn-sm btn-danger delete-comment-button" data-id="{{comment.id}}">Delete</button>

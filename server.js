@@ -8,10 +8,13 @@ const express = require('express')
 const exphbs = require('express-handlebars');
 //package for using express sessions
 const sessions = require('express-session')
-//brought in helpers
+//brought in date helpers
 const dateHelpers = require('./utils/helpers');
+//time helper
+const moment = require('moment');
 //bringing in handlebars 
 const handlebars = require('handlebars');
+
 
 
 

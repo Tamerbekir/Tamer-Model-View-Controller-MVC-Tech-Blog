@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { Post, User, Comment } = require('../../models');
+const withAuth =  require('../../utils/auth')
 
 // Route to display a single blog post
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const blogPostData = await Post.findByPk(req.params.id, {
             include: [
@@ -31,7 +32,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Route for editing a blog post
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
@@ -45,7 +46,7 @@ router.get('/edit/:id', async (req, res) => {
 
 
         if (!postData) {
-            res.status(404).send('No post found with this id');
+            res.render('404page')
             return;
         }
 

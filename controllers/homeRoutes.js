@@ -2,14 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { Post, User, Comment } = require('../models');
 
-//using as a test to see all comments in server
-// Comment.findAll().then(comments => {
-//     console.log(comments);
-// })
-
 // Homepage route
 router.get('/', async (req, res) => {
-    console.log('If logged in', req.session.logged_in);
     try {
         const blogPostData = await Post.findAll({
             include: [
@@ -31,9 +25,6 @@ router.get('/', async (req, res) => {
         });
         
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
-        
-        console.log('Blog posts with the comments attached', JSON.stringify(blogPosts, null, 2))
-
 
         res.render('homepage', {
             blogPosts,
@@ -45,17 +36,13 @@ router.get('/', async (req, res) => {
     }
 });
 
-
-
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-        // console.log(attributes ['content'])
         res.redirect('/');
     } else {
         res.render('login');
     }
 });
-
 
 router.get('/post/:id', async (req, res) => {
     try {
@@ -70,7 +57,7 @@ router.get('/post/:id', async (req, res) => {
             return;
         }
         const post = postData.get({ plain: true });
-        res.render('/', { post, logged_in: req.session.logged_in });
+        res.render('postDetails', { post, logged_in: req.session.logged_in });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -81,18 +68,18 @@ router.get('/comment/:id', async (req, res) => {
         const commentData = await Comment.findByPk(req.params.id, {
             include: [
                 { model: User, attributes: ['name'] },
-                { model: Comment, include: [{ model: User, attributes: ['name']}] }
+                { model: Comment, include: [{ model: User, attributes: ['name'] }] }
             ]
-        })
-        if(!commentData) {
-            res.status(404).json({ message: 'No comment found with this id' })
-            return
+        });
+        if (!commentData) {
+            res.status(404).json({ message: 'No comment found with this id' });
+            return;
         }
-        const comment =  commentData.get({ plain: true })
-        res.render('/', { comment, logged_in: req.session.logged_in })
+        const comment = commentData.get({ plain: true });
+        res.render('commentDetails', { comment, logged_in: req.session.logged_in });
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json(err);
     }
-})
+});
 
 module.exports = router;

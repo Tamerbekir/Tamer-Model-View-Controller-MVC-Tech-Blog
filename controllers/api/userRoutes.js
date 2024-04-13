@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+
 //using for test purposes to ensure users are being saved to the database
 // User.findAll().then(users => {
 //     console.log(users);
@@ -58,7 +59,6 @@ router.post('/login', async (req, res) => {
 })
 
 
-
 router.post('/signup', async (req, res) => {
     try {
         const userData = await User.create(req.body);
@@ -72,9 +72,6 @@ router.post('/signup', async (req, res) => {
         res.status(400).json(err);
     }
 });
-
-
-
 
 
 router.post('/logout', (req, res) => {
