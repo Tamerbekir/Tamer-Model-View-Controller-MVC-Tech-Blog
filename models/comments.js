@@ -30,7 +30,7 @@ Comment.init(
             //the post_id will grab/be the id from the Post model. It is a number.
             type: DataTypes.INTEGER,
             references: {
-                model: 'ost',
+                model: 'post',
                 key: 'id'
             },
         },
