@@ -5,19 +5,18 @@
         <div class="post-list">
             <h2>Your Blog Posts</h2>
             {{#each blogPosts as |blogPost|}}
-            <nav class="card mb-3">
+            <div class="card mb-3"> <!-- Changed from <nav> to <div> -->
                 <div class="card-body">
                     <h3 class="card-title">{{blogPost.title}}</h3>
                     <p class="card-text">{{blogPost.content}}</p>
-                    <p class="card-text"><small class="text-muted">Date: {{format_date blogPost.createdAt}}</small>
-                    </p>
+                    <p class="card-text"><small class="text-muted">Date: {{format_date blogPost.createdAt}}</small></p>
                     <div>
-                        <button class="btn btn-sm btn-danger " delete-data-id="{{blogPost.id}}">Delete</button>
+                        <button class="btn btn-sm btn-danger" delete-data-id="{{blogPost.id}}">Delete</button>
                         <a href="/blogpost/edit/{{blogPost.id}}" class="btn btn-sm btn-primary edit-link"
                             edit-data-id="{{blogPost.id}}">Edit</a>
                     </div>
                 </div>
-            </nav>
+            </div>
             {{else}}
             <p>Hmmm. No blog posts yet. Why don't you get started?</p>
             {{/each}}
@@ -28,11 +27,11 @@
         <h2>Add a New Blog Post</h2>
         <form action="/dashboard/post/create" method="POST" class="mb-4" id="new-post-form">
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
+                <label for="title" class="form-label">Title:</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">Content</label>
+                <label for="content" class="form-label">Content:</label>
                 <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -40,9 +39,7 @@
     </div>
 </div>
 
-
 <script src="/js/dashboard.js"></script>
-
-{{#if (BlogPosts)}}
+{{#if blogPosts}}
 <script src="/js/editBlogPost.js"></script>
-{{else}}
+{{/if}}

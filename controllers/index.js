@@ -5,7 +5,7 @@ const userRoutes = require('./api/userRoutes');
 const dashboardRoutes = require('./api/dashboardRoutes');
 const userComments = require('./api/commentRoutes');
 const blogPost = require('./api/blogPostRoutes')
-const features = require('./api/features')
+const features = require('./api/featuresRoutes')
 
 router.use('/users', userRoutes);
 router.use('/dashboard', dashboardRoutes);
