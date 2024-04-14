@@ -62,14 +62,19 @@ router.post('/signup', async (req, res) => {
         const userData = await User.create(req.body);
         req.session.save(() => {
             req.session.user_id = userData.id;
-            req.session.user = userData.get({ plain: true }) //added this so user name is pulled from User model and rendered on handelbars for homepage
+            req.session.user = userData.get({ plain: true });
             req.session.logged_in = true;
             res.redirect('/dashboard');
         });
     } catch (err) {
-        res.status(400).json(err);
+        if (err.name === 'SequelizeUniqueConstraintError') {
+            res.status(400).json({ message: 'The email or username you have provided is already in use. Please try another one.' });
+        } else {
+            res.status(500).json({ message: 'There seems to be an error with your request.' });
+        }
     }
 });
+
 
 
 router.post('/logout', (req, res) => {

@@ -28,11 +28,11 @@
         <h2>Add a New Blog Post</h2>
         <form action="/dashboard/post/create" method="POST" class="mb-4" id="new-post-form">
             <div class="mb-3">
-                <label for="title" class="form-label">Title:</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">Content:</label>
+                <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -42,4 +42,9 @@
 
 
 <script src="/js/dashboard.js"></script>
+
+{{#if (blogposts)}}
 <script src="/js/editBlogPost.js"></script>
+{{else}}
+<h1>test</h1>
+{{/if}}
