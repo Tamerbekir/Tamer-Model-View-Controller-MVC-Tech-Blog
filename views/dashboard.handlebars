@@ -5,7 +5,7 @@
         <div class="post-list">
             <h2>Your Blog Posts</h2>
             {{#each blogPosts as |blogPost|}}
-            <div class="card mb-3">
+            <nav class="card mb-3">
                 <div class="card-body">
                     <h3 class="card-title">{{blogPost.title}}</h3>
                     <p class="card-text">{{blogPost.content}}</p>
@@ -17,7 +17,7 @@
                             edit-data-id="{{blogPost.id}}">Edit</a>
                     </div>
                 </div>
-            </div>
+            </nav>
             {{else}}
             <p>Hmmm. No blog posts yet. Why don't you get started?</p>
             {{/each}}
