@@ -62,7 +62,7 @@ app.use(express.static('public'))
 const sess = {
     secret: process.env.SESS_SECRET,
     cookie: {
-        maxAge: 300000,
+        maxAge:  3600000,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
