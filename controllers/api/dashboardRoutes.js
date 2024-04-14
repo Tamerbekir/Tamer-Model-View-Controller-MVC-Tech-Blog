@@ -7,6 +7,9 @@ router.get('/', async (req, res) => {
     if (req.session.logged_in) {
 
         const blogPostData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id
+            }
         });
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true })) //added to show posts show on dashboard
         console.log(blogPosts)

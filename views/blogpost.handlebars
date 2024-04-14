@@ -1,13 +1,13 @@
 <h1 class="text-center m4">{{blogPost.title}}</h1>
 
 <div class="blog-post card mb-5 m-2">
-    <p>{{blogPost.content}}</p>
-    <p>Posted by {{blogPost.user.name}} - {{format_date blogPost.createdAt}}</p>
+    <p class="m-2">{{blogPost.content}}</p>
+    <p class="m-2">Posted by {{blogPost.user.name}} - {{format_date blogPost.createdAt}}</p>
 
-    <p>Comments</p>
-    {{#if blogPost.Comments.length}}
-    {{#each blogPost.Comments as |comment|}}
-    <div class="comment m-3 mt-0">
+    <p class="m-2">Comments</p>
+    {{#if blogPost.comments.length}}
+    {{#each blogPost.comments as |comment|}}
+    <div class="comment m-2">
         <p class="m-2"><strong>{{comment.user.name}}</strong>: {{comment.content}} - {{format_date comment.createdAt "YYYY-MM-DD"}}
         </p>
         {{#if (eq comment.user.name ../user.name)}}
@@ -18,7 +18,7 @@
     {{else}}
     {{#if logged_in}}
     <div class="m-2">
-        <p><strong>Be the first to comment!</strong></p>
+        <p class="m-3" ><strong>Be the first to comment!</strong></p>
     </div>
 
     {{/if}}
