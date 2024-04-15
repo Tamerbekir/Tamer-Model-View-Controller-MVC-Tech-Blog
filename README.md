@@ -1,14 +1,5 @@
 # Model View Controller MVC TechBlog
 
-# Table of Contents
-- [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Link](#link)
-- [Screenshot](#screenshot)
-- [Questions](#questions)
-- [License](#license)
-
 ## Description 
 
 Welcome to Tamer's Tech Blog!
@@ -24,6 +15,16 @@ All blog posts from all users will be rendered to the homepage. If a user is log
 The Tech Blog is also equipped with a 404 page, which will be displayed if a user tries to access a page that does not exist. For example, if a user tries to go to a direct link to a blog post, but that blog post does not exist, they will be redirected to the 404 page. Or, if the user attempts to access a page that does not belong to them (such as trying to edit a post they do not own), the user will be prompted to a 404 page.
 
 Lastly, The Tech Blog features a coming soon tab, to let all the users the blog is still under construction and that there is so much more to come!
+
+
+# Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Link](#link)
+- [Screenshot](#screenshot)
+- [Questions](#questions)
+- [License](#license)
 
 
 ## Screenshot
