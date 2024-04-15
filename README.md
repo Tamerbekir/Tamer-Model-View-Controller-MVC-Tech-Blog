@@ -26,6 +26,7 @@ Lastly, The Tech Blog features a coming soon tab, to let all the users the blog 
 # Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+- [Link](#link)
 - [Screenshot](#screenshot)
 - [Questions](#questions)
 - [License](#license)
@@ -43,6 +44,10 @@ This application uses the following technologies:
 - <a href="https://www.npmjs.com/package/express-session"> Express-session</a>
 - <a href="https://www.npmjs.com/package/connect-session-sequelize"> Connect-session-sequelize</a>
 - <a href="https://www.npmjs.com/package/dotenv"> Dotenv</a>
+
+## Link
+
+<a href="https://tamers-techblog-7d9d9db3bd10.herokuapp.com/">The Tech Blog</a>
 
 
 ## Questions
