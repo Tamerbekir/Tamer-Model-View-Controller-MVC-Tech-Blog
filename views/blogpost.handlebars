@@ -1,9 +1,11 @@
 <h1 class="text-center m4">{{blogPost.title}}</h1>
 
-<div class="blog-post card mb-5 m-2">
+<div class="blog-post m-2">
     <p class="m-2">{{blogPost.content}}</p>
     <p class="m-2">Posted by {{blogPost.user.name}} - {{format_date blogPost.createdAt}}</p>
 
+
+<div class="blog-post card m-0">
     <p class="m-2">Comments</p>
     {{#if blogPost.comments.length}}
     {{#each blogPost.comments as |comment|}}
@@ -14,6 +16,7 @@
         <button class="btn btn-sm btn-danger delete-comment-button" data-id="{{comment.id}}">Delete</button>
         {{/if}}
     </div>
+    
     {{/each}}
     {{else}}
     {{#if logged_in}}
@@ -31,7 +34,7 @@
         <button type="submit" class="btn btn-primary m-1">Comment</button>
     </form>
     {{/if}}
-</div>
+</form>
 
 {{#if logged_in}}
 <script src="/js/comments.js"></script>

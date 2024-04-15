@@ -47,6 +47,7 @@ This application uses the following technologies:
 - <a href="https://www.npmjs.com/package/express-session"> Express-session</a>
 - <a href="https://www.npmjs.com/package/connect-session-sequelize"> Connect-session-sequelize</a>
 - <a href="https://www.npmjs.com/package/dotenv"> Dotenv</a>
+- <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/"> Bootstrap 5.0.2</a>
 
 ## Link
 
