@@ -4,13 +4,13 @@
 
 Welcome to Tamer's Tech Blog!
 
-A blog created for users to talk and read about the latest tech. When a user visits the Tech Blog they will be greeted with a homepage, where they will be able to read the latest blog posts from users. However, if a user wishes to view a blog posts content, such as the comments, or wish to leave a comment themselves, they will have to login or sign up. 
+A blog created for users to talk and read about the latest tech. When a user visits the Tech Blog they will be greeted with a homepage, where they will be able to read the latest blog posts from users. However, if a user wishes to view a blog post's content, such as the comments, or wishes to leave a comment themselves, they will have to log in or sign up. 
 
-The Tech Blog is equipped with a login and or sign up page. A user can sign up using a unique username, email and a password verification. A user will be prompted with "password does not match" or "email or username is taken" if they do not meet the criteria. The users passwords are protected using bcrypt. Once they signup, their user information will be stored into the database- which means the user can log in and out as much as they want. 
+The Tech Blog is equipped with a login and or sign-up page. A user can sign up using a unique username, email, and password verification. A user will be prompted with "password does not match" or "email or username is taken" if they do not meet the criteria. The user's passwords are protected using bycrypt. Once they sign up, their user information will be stored in the database- which means the user can log in and out as much as they want. 
 
-User a user logins in or signs up they will be brought to their dashboard. One the dashboard, a user will have the ability to create as many blog posts as they want (up to 2000 characters!). From the dashboard, a user can also edit or delete their own blog posts they have created. Once a user posts a new blog or edits an existing one, it will be rendered to the homepage, where all users can view them.
+Once user log in or sign up they will be brought to their dashboard. On the dashboard, a user will have the ability to create as many blog posts as they want (up to 2000 characters!). From the dashboard, a user can also edit or delete the blog posts they have created. Once a user posts a new blog or edits an existing one, it will be rendered to the homepage, where all users can view it.
 
-All blog posts from all users will be rendered to the homepage. If a user is logged in, they can view a blogpost, and leave comments. The comments are tied to the individual user, so their username will be tied to them, and only the user who created the comments can delete them.  
+All blog posts from all users will be rendered to the homepage. If a user is logged in, they can view a blog post, and leave comments. The comments are tied to the individual user, so their username will be tied to them, and only the user who created the comments can delete them.  
 
 The Tech Blog is also equipped with a 404 page, which will be displayed if a user tries to access a page that does not exist. For example, if a user tries to go to a direct link to a blog post, but that blog post does not exist, they will be redirected to the 404 page. Or, if the user attempts to access a page that does not belong to them (such as trying to edit a post they do not own), the user will be prompted to a 404 page.
 
