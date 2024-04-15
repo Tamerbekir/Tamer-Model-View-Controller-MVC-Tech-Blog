@@ -19,6 +19,9 @@ Lastly, The Tech Blog features a coming soon tab, to let all the users the blog 
 
 ## Screenshot
 ![Alt text](image.png)
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+![Alt text](image-3.png)
 
 ## Table of Contents
  
