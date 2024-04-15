@@ -1,5 +1,14 @@
 # Model View Controller MVC TechBlog
 
+# Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Link](#link)
+- [Screenshot](#screenshot)
+- [Questions](#questions)
+- [License](#license)
+
 ## Description 
 
 Welcome to Tamer's Tech Blog!
@@ -21,18 +30,8 @@ Lastly, The Tech Blog features a coming soon tab, to let all the users the blog 
 ![Alt text](image.png)
 ![Alt text](image-1.png)
 ![Alt text](image-2.png)
-![Alt text](image-3.png)
+![Alt text](image-3.png) 
 
-## Table of Contents
- 
-
-# Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Link](#link)
-- [Screenshot](#screenshot)
-- [Questions](#questions)
-- [License](#license)
 
 ## Usage
 
