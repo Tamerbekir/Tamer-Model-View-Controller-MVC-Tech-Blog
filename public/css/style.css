@@ -1,0 +1,49 @@
+body {
+  background-color: rgba(0, 0, 0, 0.813);
+}
+
+p {
+  color: white;
+}
+
+strong {
+  color: rgb(255, 255, 255);
+}
+
+h1,
+h2 {
+  color: rgba(191, 36, 36, 0.591);
+}
+
+.blog-post {
+  border-color: 10px solid white !important;
+  border-radius: 10px;
+  background-color: rgba(67, 67, 67, 0);
+}
+
+.blog-post div {
+  background-color: rgb(144, 144, 144) !important;
+}
+
+button {
+  color: black !important;
+  border-color: rgb(14, 12, 12) !important;
+  background-color: rgba(255, 255, 255, 0.322) !important;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.156) !important;
+}
+
+.login-form,
+.signup-form {
+  color: white;
+}
+
+.navbar {
+  background-color: rgba(21, 22, 22, 0.277) !important;
+}
+
+a {
+  color: white !important;
+}
